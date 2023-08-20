@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>{{ message }}</h1>
+        <!-- <h2>{{ sayHello() }}</h2> -->
+        <button v-on:click="changeText">click button</button>
+        <button v-on:click="counter++">Counter {{ counter }}</button>
+        <button v-on:click="increase(5, $event)">increase {{ counter2 }}</button>
+        <h2 v-on:mousemove="mouseMove($event)">Mouse Move {{ x }} - {{ y }}
+            <span v-on:mousemove.stop.prevent>Stop text</span>
+        </h2>
+        <p v-html="bigText"></p>
+        <h3 v-if="productAddInCart">Добавить товар в корзину?</h3>
+        <h3 v-else="!productAddInCart">Товар добавлен в корзину</h3>
+        <h3 v-show="productAddInCart">Show</h3>
+        <button @click="productAddInCart=!productAddInCart">Add product</button>
+    </div>
+    <Script>
+        new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello VUE',
+                counter: 0,
+                counter2: 0,
+                x: 0,
+                y: 0,
+                bigText: '<span>new text <a href="#">info</a></span>',
+                productAddInCart: true,
+            },
+            methods: {
+                // sayHello () {
+                //     alert('say sayHello');
+                // },
+                changeText() {
+                    this.message = 'Text click';
+                },
+                increase(step, event) {
+                    this.counter2 += step;
+                    console.log(event);
+                },
+                mouseMove(event) {
+                    this.x = event.clientX;
+                    this.y = event.clientY;
+                }
+            },
+        })
+    </Script>
+</body>
+</html>

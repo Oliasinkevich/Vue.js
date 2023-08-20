@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <style>
+        .btn {
+            width: 100px;
+            height: 50px;
+        }
+        .turn {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 1. Создать кнопку "Перевернуть". При клике на кнопку текст кнопки, должен перевернуться и отобразиться в обратном
+    порядке.
+    2. Есть список элементов. Пользователь может добавлять новые элементы списка с текстом “Новый элемент списка” нажав
+    на кнопку "Добавить".
+    3. * При клике на элемент списка он должен быть удален. (по желанию) -->
+
+    <div id="app">
+        <button class="btn" @click="turnOver()">{{ btnText }}</button>
+        <h2>Список элементов</h2>
+        <ul>
+            <li v-for="(el, index) in listEls" @click="removeItem(index)">{{ el }}</li>
+            <input type="text" v-model="newList" >
+            <button @click="addItem">Добавить</button>
+        </ul>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: { 
+                btnText: 'Перевернуть',
+                listEls: ['хлеб', 'молоко', 'груша'],
+                newList: '',
+            },
+            methods: {
+                turnOver() {
+                    this.btnText = this.btnText.split('').reverse().join('');
+                },
+                addItem() {
+                    this.listEls.push(this.newList);
+                },
+                removeItem(index) {
+                    this.listEls.splice(index, 1);
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>

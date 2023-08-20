@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+        <style>
+            .block {
+                width: 350px;
+                height: 200px;
+            }
+            .btn {
+                width: 35px;
+            }
+            .like {
+                color: red;
+            }
+        </style>
+
+</head>
+<body>
+
+    <div id="app">
+        <input type="text" @keyup.enter="send()"> <button @click="send()">Отправить</button>
+        <a :href="linkHref">my new link</a>
+        <img :src="imgPhoto" alt="photo">
+        <div class="block" :style="styleBlock">
+            Lorem ipsum dolor sit amet.
+        </div>
+        <h2>{{ modelData }}</h2>
+        <input type="text" v-model.lazy="modelData">
+        <button @click="headingText" class="heading__button">ckick heading</button>
+        <h2>Калькулятор</h2>
+        <input type="text" v-model.number="firstNum">
+        <input type="text" v-model.number="secondNum">
+        =
+        {{ result }}
+        <div>
+            <button @click="plus">+</button>
+            <button @click="minus">-</button>
+            <button @click="malt">*</button>
+            <button @click="div">/</button>
+        </div>
+        <h3>Конкструктор</h3>
+        <input type="text" v-model="block2Width">
+        <input type="text" v-model="block2Color">
+        <div class="block2" :style="change">
+            Lorem ipsum dolor sit amet.
+        </div>
+        <h3>list</h3>
+        <ul>
+            <li v-for="item in listItems" :key="index"> {{ item }}</li>
+        </ul>
+        <input type="text" v-model="newList" @keyup.enter="addItem">
+        <article class="article" v-for="article in data" :key="article.id">
+            <h2 class="article__title"> {{ article.title }}</h2>
+            <p class="article__text"> {{ article.text }}</p>
+            <button class="btn" @click="likeToggle = !likeToggle" :class="{like: likeToggle}">like</button>
+        </article>
+
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                likeToggle: false,
+                data: [
+                    {
+                        title: 'title text',
+                        text: 'description text info element'
+                    },
+                    {
+                        title: 'new title text',
+                        text: 'new description text info element'
+                    }
+                ],
+                newList:'',
+                listItems: [1, 2, 4],
+                firstNum: 0,
+                secondNum: 0,
+                result: 0,
+                modelData: '',
+                linkHref: 'product.html',
+                imgPhoto: 'photo.jpg',
+                styleBlock: {
+                    backgroundColor: 'green',
+                    color: 'red'
+                },
+                block2Width: 100,
+                block2BackgroundColor: '#ccc',
+            },
+            methods: {
+                addItem() {
+                    this.listItems.push(this.newList);
+                },
+                plus() {
+                    this.result = this.firstNum + this.secondNum;
+                },
+                minus() {
+                    this.result = this.firstNum - this.secondNum;
+                },
+                malt() {
+                    this.result = this.firstNum * this.secondNum;
+                },
+                div() {
+                    this.result = this.firstNum / this.secondNum;
+                },
+                headingText() {
+                    if (this.modelData === '') {
+                        this.modelData = 'Заголовок для блока';
+                    } 
+                },
+                send() {
+                    console.log('Отправили данные внутри input');
+                }
+            },
+            computed: {
+                change() {
+                    return {
+                        width: `${this.block2Width}px`,
+                        height: `${this.block2Width}px`,
+                        backgroundColor: `${this.block2BackgroundColor}`,
+                    }
+                }
+            }
+        })
+    </script>
+    
+</body>
+</html>
