@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <style>
+        .product__img {
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 1 задание -->
+
+    <!-- Вы разрабатываете страницу для отображения информации о товаре. У вас есть объект product, который содержит информацию о товаре, включая название, цену и URL изображения товара. Вам необходимо отобразить эту информацию на странице с использованием v-bind.
+
+    Добавьте кнопку, которая будет изменять цену товара. При нажатии на кнопку должна генерироваться скидка на товар от 1 до 20% и обновиться цена товара в соответствии с значением скидки -->
+
+    <!-- 2 задание -->
+
+    <!-- Вы разрабатываете простое приложение для отображения списка пользователей. У вас есть массив объектов users, где каждый объект представляет одного пользователя с его именем и возрастом. Вам необходимо отобразить каждого пользователя из массива в виде списка на странице. -->
+
+    <!-- 3 задание -->
+
+    <!-- Вы разрабатываете приложение для создания списка покупок. У вас есть массив объектов items, где каждый объект представляет товар с его названием и количеством. Вам необходимо отобразить список товаров, предоставить возможность изменять количество каждого товара и отмечать товары, которые уже куплены. -->
+
+    <!-- 4 задание -->
+
+    <!-- Вы разрабатываете приложение для управления списком контактов. У вас есть форма с полями "Имя", "Фамилия" и "Email", где пользователь может вводить информацию о новом контакте. После добавления контакта он должен отображаться в списке контактов. Требуется связать форму с данными и отображать список контактов на странице. -->
+
+    <div id="app">
+        <div class="product">
+            <p class="product__name">{{ product.name }}</p>
+            <p class="product__price"> Цена - {{ product.price }}</p>
+            <p class="product__price_new"> Цена - {{ newPrice }}</p>
+            <img class="product__img" :src="product.srcImg" alt="product photo"><br>
+            <button @click="sale">Рассчитать скидку</button>
+        </div>
+        <ul class="user">
+            <li v-for="{name, age} in users" :key="users.id">{{ name }}, {{ age }}</li>
+        </ul>
+        <ul class="item">
+            <li v-for="{name, quantity, isSold} in items" :key="items.id">
+                <input type="text" v-model="quantity">
+                <input type="checkbox" v-model="isSold">
+                <span>{{ name }}</span>
+            </li>
+        </ul>
+        <form @submit.prevent>Данные пользователя
+            <p>Имя:</p>
+            <input type="text" v-model="name">
+            <p>Фамилия:</p>
+            <input type="text" v-model="surname">
+            <p>Email:</p>
+            <input type="email" v-model="email"><br>
+            <button @click="addContact()">Добавить контакт</button>
+        </form>
+        <ul class="contacts__saved">Пользователи
+            <li v-for="{id, name, surname, email} in contacts" :key="id"> {{ name }} {{ surname }} - {{ email }} </li>
+        </ul>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                product: {
+                    name: 'bear',
+                    srcImg: 'https://yanbrowser.ru/wp-content/uploads/2019/06/Kak-sdelat-temnyj-fon-v-VK-v-YAndeks.Brauzere.png',
+                    price: 106
+                },
+                discount: 0,
+                users: [
+                    {
+                        id: 1,
+                        name: 'Olga',
+                        age: 33,
+                    },
+                    {
+                        id: 2,
+                        name: 'Vasya',
+                        age: 37,
+                    },
+                    {
+                        id: 3,
+                        name: 'Galya',
+                        age: 27,
+                    },
+                    {
+                        id: 4,
+                        name: 'Kostya',
+                        age: 42
+                    }
+                ],
+                items: [
+                    {
+                        id: 1,
+                        name: 'молоко',
+                        quantity: 2,
+                        isSold: false
+                    },
+                    {
+                        id: 2,
+                        name: 'хлеб',
+                        quantity: 1,
+                        isSold: false
+                    },
+                    {
+                        id: 3,
+                        name: 'яблоки',
+                        quantity: 5,
+                        isSold: false
+                    },
+                    {
+                        id: 4,
+                        name: 'мясо',
+                        quantity: 2,
+                        isSold: false
+                    }
+                ],
+                contacts: [],
+                name: '',
+                surname: '',
+                email: ''
+            },
+            methods: {
+                sale() {
+                    this.discount = parseInt(Math.random() * 20);
+                },
+                addContact() {
+                    this.contacts.push({
+                        id: new Date().toString(),
+                        name: this.name,
+                        surname: this.surname,
+                        email: this.email
+                    });
+                    this.name = '',
+                    this.surmame = '',
+                    this.email = ''
+                }
+            },
+            computed: {
+                newPrice() {
+                    return this.product.price - (this.product.price * this.discount) / 100;
+                }
+            }
+        })
+    </script>
+
+
+
+
+</body>
+
+</html>
