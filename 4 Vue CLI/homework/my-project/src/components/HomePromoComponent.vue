@@ -5,10 +5,10 @@
             <p class="promo-text__paragraph">There are many variations of the passages of <br>lorem Ipsum fromavailable,
                 majority</p>
             <a href="#" class="promo-text__btn">Get Started
-                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="17" viewBox="0 0 19 17" fill="none">
-                        <path d="M2 8.43542L15.7232 8.29857M10.6182 1.91138L17.1412 8.43436L10.4868 15.0887"
-                            stroke="#CDA274" stroke-width="2" stroke-linecap="square" stroke-linejoin="round" />
-                    </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="19" height="17" viewBox="0 0 19 17" fill="none">
+                    <path d="M2 8.43542L15.7232 8.29857M10.6182 1.91138L17.1412 8.43436L10.4868 15.0887" stroke="#CDA274"
+                        stroke-width="2" stroke-linecap="square" stroke-linejoin="round" />
+                </svg>
             </a>
 
         </div>
@@ -22,16 +22,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.promo {
-    background-image: url(../assets/homePromo.png);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    height: 758px;
-    border-radius: 18px;
-}
 
 .promo-text {
+    background-image: url(../assets/homePromo.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 70px;
+    padding: 208px 715px 208px 52px;
     display: flex;
     gap: 21px;
     flex-direction: column;
