@@ -5,11 +5,15 @@ Vue.component('blog-details', {
             <img src="Photo.png" alt="photo">
             <p>Lorem ipsum dolor sit amet, adipiscing Aliquam eu sem vitae turpmaximus.posuere in.Contrary to popular belief.There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injecthumour, or randomised words which don't look even slightly believable.
             Embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary.</p>
+            <button v-for="tag in tags"
+            v-bind:key="tag.id"
+            @click="selectedTag(tag)">{{ tag.tag }}</button>
+            <blogs-list 
+            v-bind:bloglist="bloglist" 
+            v-bind:currentTag="currentTag">
+            </blogs-list>
         </div>
     `,
-});
-
-Vue.component('blogs-list', {
     data() {
         return {
             tags: [
@@ -67,24 +71,32 @@ Vue.component('blogs-list', {
                 },
             ],
             currentTag: '',
-        };
+        }
     },
     methods: {
         selectedTag(tag) {
             this.currentTag = tag;
         }
     },
+});
+
+Vue.component('blogs-list', {
+    props: ['bloglist', 'currentTag'],
+    data() {
+        return {
+            // currentTag: ''
+        };
+    },
     computed: {
         filterArticle() {
-            if(this.currentTag === '') {
-                return this.bloglist;
+            if (this.currentTag === '') {
+              return this.bloglist;
             }
-            return this.bloglist.filter((el) => el.tag.includes(this.currentTag.tag))
-        }
+            return this.bloglist.filter((el) => el.tag.includes(this.currentTag.tag));
+          },          
     },
     template: `
         <div>
-            <button v-for="tag in tags" @click="selectedTag(tag)">{{ tag.tag }}</button>
             <h2>Design sprints are great</h2>
             <p>Lorem ipsum dolor sit amet, adipiscing Aliquam eu sem vitae turpmaximus.posuere in.Contrary to popular belief.There are many variations of passages of Lorem Ipsum available, but the majority have suffered.</p>
             <ul>
@@ -97,6 +109,7 @@ Vue.component('blogs-list', {
         </div>
     `,
 });
+
 Vue.component('blog', {
     props: ['blog'],    
     template: `
