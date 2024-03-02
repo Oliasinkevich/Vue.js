@@ -1,32 +1,41 @@
 <template>
-  <BlogDetails/>
+  <HeaderComponent />
+  <BlogDetails />
+  <FooterComponent />
 </template>
 
 <script>
-import BlogDetails from './components/BlogDetails.vue'
-
+import HeaderComponent from "./components/HeaderComponent.vue";
+import BlogDetails from "./components/BlogDetails.vue";
+import FooterComponent from "./components/FooterComponent.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    BlogDetails
-  }
-}
+    HeaderComponent,
+    BlogDetails,
+    FooterComponent,
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  /* margin-top: 60px; */
+body {
+  margin: 0;
+  bottom: 0;
+  font-family: "Jost";
 }
 
-  body {
-    margin: 0;
-    bottom: 0;
-  }
+a {
+  text-decoration: none;
+}
 
+li {
+  list-style: none;
+}
+
+.center {
+  padding-left: calc(50% - 600px);
+  padding-right: calc(50% - 600px);
+}
 </style>
