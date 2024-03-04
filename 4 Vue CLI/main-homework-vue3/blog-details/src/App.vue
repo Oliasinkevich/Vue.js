@@ -1,21 +1,21 @@
 <template>
   <HeaderComponent />
-  <BlogDetails />
+  <ProjectComponent />
   <FooterComponent />
 </template>
 
 <script>
 import HeaderComponent from "./components/HeaderComponent.vue";
-import BlogDetails from "./components/BlogDetails.vue";
 import FooterComponent from "./components/FooterComponent.vue";
+import ProjectComponent from "./components/ProjectComponent.vue";
 
 export default {
   name: "App",
   components: {
     HeaderComponent,
-    BlogDetails,
     FooterComponent,
-  },
+    ProjectComponent
+},
 };
 </script>
 

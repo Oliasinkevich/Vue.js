@@ -123,7 +123,7 @@ $colorTxt: #4d5053;
   margin: 0 auto;
 }
 .footer-content {
-  margin-top: 100px;
+  // margin-top: 100px;
   display: flex;
   justify-content: space-between;
   gap: 101px;
