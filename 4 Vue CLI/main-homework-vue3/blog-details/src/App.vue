@@ -1,21 +1,24 @@
 <template>
-  <HeaderComponent />
+  <!-- <HeaderComponent />
   <ProjectComponent />
-  <FooterComponent />
+  <FooterComponent /> -->
+  <ProjectDetails />
 </template>
 
 <script>
-import HeaderComponent from "./components/HeaderComponent.vue";
-import FooterComponent from "./components/FooterComponent.vue";
-import ProjectComponent from "./components/ProjectComponent.vue";
+// import HeaderComponent from "./components/HeaderComponent.vue";
+// import FooterComponent from "./components/FooterComponent.vue";
+// import ProjectComponent from "./components/ProjectComponent.vue";
+import ProjectDetails from "./pages/ProjectDetails.vue";
 
 export default {
   name: "App",
   components: {
-    HeaderComponent,
-    FooterComponent,
-    ProjectComponent
-},
+    // HeaderComponent,
+    // FooterComponent,
+    // ProjectComponent,
+    ProjectDetails
+  },
 };
 </script>
 
